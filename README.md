@@ -6,3 +6,6 @@ We start building our audio visualization application from the scratch. Overall 
 At this point, we start with Groups and Items.
 Groups are containers, have a hierarchical structure, and may contain Items and other groups(sub-groups).
 An item is a predefined style, has its price, must be placed in a Group.
+
+# UML class diagram
+![UML class diagram](https://github.com/andranikkhandanyan/Generactive/raw/main/uml_diagram.png)
