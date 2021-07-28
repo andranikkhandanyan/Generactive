@@ -5,7 +5,8 @@ import am.aca.generactive.model.Item;
 import am.aca.generactive.model.StockItem;
 import am.aca.generactive.util.idgenerator.IdGenerator;
 import am.aca.generactive.util.idgenerator.Type;
-import am.aca.generactive.util.namegenerator.NameGenerator;
+import am.aca.generactive.util.namegenerator.Casing;
+import am.aca.generactive.util.namegenerator.NameGen;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,14 +14,20 @@ import java.util.Random;
 
 public final class ItemMock {
 
+    private static final NameGen NAME_GEN = NameGen.start()
+            .withSeparator(" ")
+            .withCasing(Casing.CAPITALIZE)
+            .adjective()
+            .noun();
+
     public static Item getItem(Class<? extends Item> clazz) {
         Item item;
         if (clazz == GenerativeItem.class) {
             item = new GenerativeItem(IdGenerator.getNext(Type.GROUP),
-                    generateRandomPrice(), NameGenerator.getRandomName());
+                    generateRandomPrice(), NAME_GEN.get());
         } else {
             item =  new StockItem(IdGenerator.getNext(Type.GROUP),
-                    generateRandomPrice(), NameGenerator.getRandomName());
+                    generateRandomPrice(), NAME_GEN.get());
         }
 
         return item;

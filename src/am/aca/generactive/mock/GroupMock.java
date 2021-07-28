@@ -3,7 +3,8 @@ package am.aca.generactive.mock;
 import am.aca.generactive.model.Group;
 import am.aca.generactive.util.idgenerator.IdGenerator;
 import am.aca.generactive.util.idgenerator.Type;
-import am.aca.generactive.util.namegenerator.NameGenerator;
+import am.aca.generactive.util.namegenerator.Casing;
+import am.aca.generactive.util.namegenerator.NameGen;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,8 +12,14 @@ import java.util.List;
 
 public final class GroupMock {
 
+    private static final NameGen NAME_GEN = NameGen.start()
+            .withSeparator(" ")
+            .withCasing(Casing.CAPITALIZE)
+            .adjective()
+            .noun();
+
     public static Group getGroup() {
-        return new Group(IdGenerator.getNext(Type.GROUP), NameGenerator.getRandomName());
+        return new Group(IdGenerator.getNext(Type.GROUP), NAME_GEN.get());
     }
 
     public static List<Group> getGroupsHierarchy() {
